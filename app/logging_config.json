@@ -1,0 +1,12 @@
+{
+  "logger": {
+    "path": "/var/log/access.log",
+    "filename": "access.log",
+    "level": "info",
+    "rotation": "20 days",
+    "retention": "1 months",
+    "format": "<level>{level}</level>|<green>{time:YYYY-MM-DD HH:mm:ssssss Z}</green>|{extra[app_name]}|{extra[log_type]}|<cyan>{name}</cyan>|<cyan>{function}</cyan>|<level>{message}</level>"
+  }
+
+}
+
