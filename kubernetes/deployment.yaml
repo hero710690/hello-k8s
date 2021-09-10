@@ -35,16 +35,4 @@ spec:
         env:
         - name: APP_NAME
           value: hello_api
-      #serviceAccountName: hello-python-sa    ## 與GSA綁定權限控制存取
-
-      #   volumeMounts:           ## Mount secret
-      #   - name: gcp-service-account-credentials-volume
-      #     mountPath: /etc/gcp
-      #     readOnly: true
-      #   env:
-      #   - name: GOOGLE_APPLICATION_CREDENTIALS
-      #     value: /etc/gcp/dev-ml-awoo-com-tw-arangodb-access.json
-      # volumes:
-      # - name: gcp-service-account-credentials-volume
-      #   secret:
-      #     secretName: service-account-credentials-volume
+      
