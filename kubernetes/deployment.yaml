@@ -7,26 +7,44 @@ spec:
     app: hello-python
   ports:
   - protocol: "TCP"
-    port: 6000
-    targetPort: 5000
-  type: LoadBalancer
-
+    port: 80
+    targetPort: 80
 
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-python
+
 spec:
-  replicas: 4
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-python
   template:
     metadata:
       labels:
         app: hello-python
+        logging: "true"
     spec:
       containers:
       - name: hello-python
-        image: hello-python:latest
-        imagePullPolicy: Never
+        image: asia.gcr.io/dev-ml-awoo-com-tw/hello-python:latest
         ports:
-        - containerPort: 5000
+        - containerPort: 80
+        env:
+        - name: APP_NAME
+          value: hello_api
+      serviceAccountName: hello-python-sa    ## 與GSA綁定權限控制存取
+
+      #   volumeMounts:           ## Mount secret
+      #   - name: gcp-service-account-credentials-volume
+      #     mountPath: /etc/gcp
+      #     readOnly: true
+      #   env:
+      #   - name: GOOGLE_APPLICATION_CREDENTIALS
+      #     value: /etc/gcp/dev-ml-awoo-com-tw-arangodb-access.json
+      # volumes:
+      # - name: gcp-service-account-credentials-volume
+      #   secret:
+      #     secretName: service-account-credentials-volume
