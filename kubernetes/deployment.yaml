@@ -29,13 +29,13 @@ spec:
     spec:
       containers:
       - name: hello-python
-        image: asia.gcr.io/dev-ml-awoo-com-tw/hello-python:latest
+        image: hello-k8s:latest
         ports:
         - containerPort: 80
         env:
         - name: APP_NAME
           value: hello_api
-      serviceAccountName: hello-python-sa    ## 與GSA綁定權限控制存取
+      #serviceAccountName: hello-python-sa    ## 與GSA綁定權限控制存取
 
       #   volumeMounts:           ## Mount secret
       #   - name: gcp-service-account-credentials-volume
